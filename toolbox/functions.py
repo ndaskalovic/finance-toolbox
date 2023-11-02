@@ -2,19 +2,15 @@ import json
 import requests
 from fredapi import Fred  # https://mortada.net/python-api-for-fred.html
 import pandas as pd
+import os
 
-with open('api_keys.json') as f:
-    api_keys = json.load(f)
-BLS_API_KEY = api_keys['bls']
+BLS_API_KEY = os.environ.get("BLS_API_KEY")
 # https://data.bls.gov/PDQWeb/jt (jolts)
 # https://data.bls.gov/PDQWeb/ci (eci)
 # https://www.bls.gov/data/
 
-FRED_API_KEY = api_keys['fred']
-NASDAQ_DATA_LINK_API_KEY = api_keys['nasdaq']
-EOD_HISTORICAL_API_KEY = api_keys['eod_historical']
-
-BLS_ENDPOINT = "https://api.bls.gov/publicAPI/v2/timeseries/data/"
+FRED_API_KEY = os.environ.get("FRED_API_KEY")
+BLS_ENDPOINT = os.environ.get("BLS_ENDPOINT")
 
 
 fred = Fred(api_key=FRED_API_KEY)
